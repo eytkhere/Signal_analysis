@@ -33,7 +33,7 @@ def visualize():
     # x-axis
     plt.xlabel("Time")
     # y-axis
-    plt.ylabel("Frequency")
+    plt.ylabel("Amplitude")
     plt.plot(time, signal)
     plt.show()
 
