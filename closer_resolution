@@ -1,0 +1,29 @@
+# download numpy, matplotlib, librosa
+import matplotlib.pyplot as plt
+import numpy as np
+import wave
+import librosa
+import librosa.display
+from scipy.io import wavfile
+
+audio="female.wav"
+sampFreq, sound = wavfile.read(audio)
+
+# sound.shape -> (how many sample points, how many channels)
+# in male.wav we have 38067 sample points
+print(sound.shape)
+
+# sound.dtype -> how many bits. sampFreq -> The samples are taken sampFreq times per second
+print(sound.dtype, sampFreq)
+
+length_in_sec = sound.shape[0] / sampFreq
+
+# time ->  create an array containing the time points
+time = np.arange(sound.shape[0]) / sound.shape[0] * length_in_sec
+# redefine sound as signal -> for convineience
+
+
+plt.plot(time[6800:7000], sound[6800:7000])
+plt.xlabel("time, s")
+plt.ylabel("Signal, Amplitude")
+plt.show()
