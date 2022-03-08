@@ -1,0 +1,20 @@
+# download numpy, matplotlib, librosa
+import matplotlib.pyplot as plt
+import numpy as np
+import wave
+import librosa
+import librosa.display
+
+
+def spectrogram():
+    audio = "file_example_WAV_1MG.wav"
+    x, sr = librosa.load(audio)
+    X = librosa.stft(x)
+    Xdb = librosa.amplitude_to_db(abs(X))
+    plt.figure(figsize = (10, 5))
+    librosa.display.specshow(Xdb, sr=sr, x_axis='time', y_axis='hz')
+    plt.colorbar()
+    plt.show()
+    
+    
+spectrogram()
