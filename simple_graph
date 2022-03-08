@@ -1,0 +1,46 @@
+# download numpy, matplotlib
+import matplotlib.pyplot as plt
+import numpy as np
+import wave, sys
+
+
+# shows the sound waves
+def visualize():
+    # reading the audio file
+    raw = wave.open("file_example_WAV_1MG.wav")
+    # reads all the frames
+    # -1 indicates all or max frames
+    signal = raw.readframes(-1)
+    signal = np.frombuffer(signal, dtype="int16")
+    # gets the frame rate
+    f_rate = raw.getframerate()
+    # to Plot the x-axis in seconds
+    # you need get the frame rate
+    # and divide by size of your signal
+    # to create a Time Vector
+    # spaced linearly with the size
+    # of the audio file
+    time = np.linspace(
+        0,  # start
+        len(signal) / f_rate,
+        num=len(signal)
+    )
+    # using matplotlib to plot
+    # creates a new figure
+    plt.figure(1)
+    # plot title
+    plt.title("Sound Wave")
+    # x-axis
+    plt.xlabel("Time")
+    # y-axis
+    plt.ylabel("Frequency")
+    plt.plot(time, signal)
+    plt.show()
+
+visualize()
+
+
+
+
+
+
